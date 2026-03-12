@@ -1,0 +1,290 @@
+/* ── About Hero ─────────────────────────── */
+.about-hero {
+  position: relative; z-index: 1;
+  min-height: 80vh;
+  display: flex; align-items: center;
+  padding: 100px 5% 60px;
+  gap: 60px;
+}
+
+.about-hero-content { max-width: 580px; }
+
+.about-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 4.5vw, 56px);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -1px; margin-bottom: 20px;
+  display: flex; flex-direction: column;
+}
+
+.about-hero-title span:first-child { color: var(--text); }
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--electric-blue), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.about-hero-desc {
+  font-size: 16px; color: var(--text-dim);
+  line-height: 1.7; max-width: 500px;
+}
+
+/* Speedometer Visual */
+.about-hero-visual {
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.speedometer {
+  width: 220px; height: 220px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.speedo-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: var(--electric-blue);
+  border-right-color: var(--electric-blue);
+  box-shadow: 0 0 30px rgba(0,149,255,0.3);
+  animation: spin 3s linear infinite;
+}
+
+.speedo-inner {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  box-shadow: 0 0 40px rgba(0,149,255,0.1);
+}
+
+.speedo-value {
+  font-family: var(--font-display);
+  font-size: 48px; font-weight: 900;
+  color: var(--electric-blue);
+  line-height: 1;
+}
+
+.speedo-label {
+  font-family: var(--font-mono); font-size: 8px;
+  color: var(--text-dim); letter-spacing: 2px;
+  text-align: center; margin-top: 4px;
+}
+
+/* ── About Section ──────────────────────── */
+.about-section {
+  position: relative; z-index: 1;
+  padding: 80px 5%;
+  border-top: 1px solid var(--border);
+}
+
+.alt-bg { background: rgba(0,149,255,0.02); }
+
+.about-container { max-width: 1000px; margin: 0 auto; }
+
+.about-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 900; letter-spacing: 2px;
+  color: var(--text); margin-bottom: 40px;
+  margin-top: 8px;
+}
+
+/* ── Developer Card ─────────────────────── */
+.developer-card {
+  display: flex; gap: 40px; align-items: flex-start;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 36px;
+  position: relative; overflow: hidden;
+}
+
+.developer-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--electric-blue), var(--cyan), transparent);
+}
+
+.dev-avatar-wrap { position: relative; flex-shrink: 0; }
+
+.dev-avatar {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--electric-blue), #0040ff);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 900; color: #000;
+  box-shadow: 0 0 24px rgba(0,149,255,0.4);
+}
+
+.dev-avatar-ring {
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,149,255,0.3);
+  animation: ringPulse 2s ease-in-out infinite;
+}
+
+.dev-name {
+  font-family: var(--font-display);
+  font-size: 24px; font-weight: 900;
+  letter-spacing: 2px; color: var(--text);
+  margin-bottom: 6px;
+}
+
+.dev-role {
+  font-family: var(--font-mono); font-size: 11px;
+  color: var(--electric-blue); letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.dev-bio {
+  font-size: 14px; color: var(--text-dim);
+  line-height: 1.7; margin-bottom: 20px;
+  max-width: 500px;
+}
+
+.dev-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.dev-tag {
+  padding: 4px 12px;
+  background: rgba(0,149,255,0.08);
+  border: 1px solid rgba(0,149,255,0.2);
+  border-radius: 100px;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--electric-blue); letter-spacing: 1px;
+}
+
+/* ── Tech Grid ──────────────────────────── */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.tech-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 24px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: all 0.3s;
+}
+
+.tech-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-3px);
+}
+
+.tech-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+
+.tech-name {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1px; color: var(--text);
+}
+
+.tech-desc {
+  font-size: 12px; color: var(--text-dim); line-height: 1.5;
+}
+
+/* ── Features List ──────────────────────── */
+.features-list {
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.feature-list-item {
+  display: flex; align-items: center; gap: 20px;
+  padding: 18px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+.feature-list-item:hover {
+  border-color: var(--border-bright);
+  transform: translateX(4px);
+}
+
+.fli-num {
+  font-family: var(--font-display);
+  font-size: 22px; font-weight: 900;
+  flex-shrink: 0; width: 36px;
+}
+
+.fli-content { flex: 1; }
+
+.fli-title {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; color: var(--text);
+  margin-bottom: 4px;
+}
+
+.fli-desc {
+  font-size: 12px; color: var(--text-dim); line-height: 1.5;
+}
+
+.fli-endpoint {
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--electric-blue); letter-spacing: 1px;
+  background: rgba(0,149,255,0.06);
+  padding: 3px 8px; border-radius: 3px;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+.red { color: var(--racing-red); }
+.silver { color: var(--silver); }
+
+/* ── Philosophy Grid ────────────────────── */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.philosophy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.philosophy-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-4px);
+}
+
+.ph-icon { font-size: 36px; margin-bottom: 14px; }
+
+.philosophy-card h3 {
+  font-family: var(--font-display);
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 2px; color: var(--text);
+  margin-bottom: 10px;
+}
+
+.philosophy-card p {
+  font-size: 13px; color: var(--text-dim); line-height: 1.6;
+}
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 768px) {
+  .about-hero { flex-direction: column; }
+  .about-hero-visual { display: none; }
+  .developer-card { flex-direction: column; }
+  .feature-list-item { flex-wrap: wrap; }
+  .fli-endpoint { width: 100%; }
+}

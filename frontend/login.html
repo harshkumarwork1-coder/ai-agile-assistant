@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login — AI Agile Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/auth.css"/>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Background -->
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">AI AGILE</span>
+    </a>
+    <div class="nav-cta">
+      <a href="register.html" class="btn-primary">Register</a>
+    </div>
+  </nav>
+
+  <!-- Login Section -->
+  <section class="auth-section">
+
+    <!-- Left Panel -->
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <div class="auth-badge">
+          <span class="badge-dot"></span>
+          WELCOME BACK RACER
+        </div>
+        <h1 class="auth-title">
+          <span>BACK TO THE</span>
+          <span class="gradient-text">STARTING GRID</span>
+        </h1>
+        <p class="auth-desc">
+          Login to your AI Agile Assistant dashboard. 
+          Your sprints, risks, workloads and retrospectives 
+          are waiting for you.
+        </p>
+        <div class="auth-features">
+          <div class="auth-feature-item">
+            <span class="af-icon">📊</span>
+            <span>View your live project dashboard</span>
+          </div>
+          <div class="auth-feature-item">
+            <span class="af-icon">⚠️</span>
+            <span>Check risk predictions and alerts</span>
+          </div>
+          <div class="auth-feature-item">
+            <span class="af-icon">📈</span>
+            <span>Analyze sprint analytics and velocity</span>
+          </div>
+          <div class="auth-feature-item">
+            <span class="af-icon">🚀</span>
+            <span>Manage all your Agile projects</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Panel — Form -->
+    <div class="auth-right">
+      <div class="auth-card">
+
+        <div class="auth-card-header">
+          <div class="logo-icon">⚡</div>
+          <h2>LOGIN</h2>
+          <p>Enter your credentials to continue</p>
+        </div>
+
+        <!-- Success / Error Messages -->
+        <div class="msg success-msg" id="successMsg" style="display:none">
+          ✅ Login successful! Redirecting...
+        </div>
+        <div class="msg error-msg" id="errorMsg" style="display:none">
+          ❌ <span id="errorText">Something went wrong.</span>
+        </div>
+
+        <!-- Form -->
+        <div class="auth-form">
+
+          <div class="form-group">
+            <label class="form-label">EMAIL ADDRESS</label>
+            <div class="input-wrap">
+              <span class="input-icon">✉️</span>
+              <input
+                type="email"
+                id="email"
+                class="form-input"
+                placeholder="e.g. harsh@email.com"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">PASSWORD</label>
+            <div class="input-wrap">
+              <span class="input-icon">🔒</span>
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Enter your password"
+              />
+              <span class="input-toggle" id="togglePassword">👁️</span>
+            </div>
+          </div>
+
+          <button class="auth-btn" id="loginBtn">
+            <span id="btnText">LOGIN</span>
+            <span id="btnLoader" style="display:none">⏳ LOGGING IN...</span>
+          </button>
+
+          <p class="auth-switch">
+            Don't have an account?
+            <a href="register.html">Register here</a>
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+
+      // Redirect if already logged in
+      if (isLoggedIn()) {
+        window.location.href = 'welcome.html';
+      }
+
+      // Toggle password visibility
+      const togglePassword = document.getElementById('togglePassword');
+      const passwordInput = document.getElementById('password');
+      togglePassword.addEventListener('click', () => {
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+      });
+
+      // Login button
+      const loginBtn = document.getElementById('loginBtn');
+      loginBtn.addEventListener('click', async () => {
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+
+        const successMsg = document.getElementById('successMsg');
+        const errorMsg = document.getElementById('errorMsg');
+        const errorText = document.getElementById('errorText');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+
+        // Hide previous messages
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+
+        // Basic validation
+        if (!email || !password) {
+          errorText.textContent = 'Please fill in all fields.';
+          errorMsg.style.display = 'block';
+          return;
+        }
+
+        // Show loader
+        btnText.style.display = 'none';
+        btnLoader.style.display = 'inline';
+        loginBtn.disabled = true;
+
+        try {
+          const result = await loginUser({ email, password });
+
+          if (result.access_token) {
+            saveToken(result.access_token);
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+              window.location.href = 'welcome.html';
+            }, 1500);
+          } else {
+            errorText.textContent = result.detail || 'Login failed. Check your credentials.';
+            errorMsg.style.display = 'block';
+          }
+        } catch (err) {
+          errorText.textContent = 'Cannot connect to server. Make sure backend is running.';
+          errorMsg.style.display = 'block';
+        }
+
+        // Hide loader
+        btnText.style.display = 'inline';
+        btnLoader.style.display = 'none';
+        loginBtn.disabled = false;
+
+      });
+
+      // Allow Enter key to submit
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          document.getElementById('loginBtn').click();
+        }
+      });
+
+    });
+  </script>
+
+</body>
+</html>

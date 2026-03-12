@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — AI Agile Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/about.css"/>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Background -->
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">AI AGILE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="welcome.html">Projects</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="register.html" class="btn-outline">Register</a>
+      <a href="login.html" class="btn-primary">Login</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="about-hero">
+    <div class="about-hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        BUILT WITH PASSION
+      </div>
+      <h1 class="about-hero-title">
+        <span>ENGINEERED LIKE A</span>
+        <span class="gradient-text">RACE CAR</span>
+      </h1>
+      <p class="about-hero-desc">
+        AI Agile Assistant is not just a project management tool —
+        it's a high-performance machine built for speed, precision
+        and intelligent decision making. Just like a race car on the track.
+      </p>
+    </div>
+    <div class="about-hero-visual">
+      <div class="speedometer">
+        <div class="speedo-ring"></div>
+        <div class="speedo-inner">
+          <div class="speedo-value">100</div>
+          <div class="speedo-label">SPRINT VELOCITY</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Developer -->
+  <section class="about-section">
+    <div class="about-container">
+      <div class="section-tag">// THE DRIVER</div>
+      <h2 class="about-section-title">MEET THE DEVELOPER</h2>
+      <div class="developer-card">
+        <div class="dev-avatar-wrap">
+          <div class="dev-avatar">HK</div>
+          <div class="dev-avatar-ring"></div>
+        </div>
+        <div class="dev-info">
+          <h3 class="dev-name">HARSH KUMAR</h3>
+          <p class="dev-role">Software Developer · Agile Enthusiast · Car & Motorcycle Lover</p>
+          <p class="dev-bio">
+            Based in Angondhalli, India. Passionate about building intelligent software
+            systems that solve real-world problems. When not coding, you'll find me
+            admiring cars and motorcycles — the same precision engineering that inspires
+            this project's design and philosophy.
+          </p>
+          <div class="dev-tags">
+            <span class="dev-tag">Python</span>
+            <span class="dev-tag">FastAPI</span>
+            <span class="dev-tag">MongoDB</span>
+            <span class="dev-tag">AI/ML</span>
+            <span class="dev-tag">Agile</span>
+            <span class="dev-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="about-section alt-bg">
+    <div class="about-container">
+      <div class="section-tag">// UNDER THE HOOD</div>
+      <h2 class="about-section-title">TECH STACK</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon blue-glow">⚡</div>
+          <div class="tech-name">FastAPI</div>
+          <div class="tech-desc">High-performance Python backend framework</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon green-glow">🍃</div>
+          <div class="tech-name">MongoDB</div>
+          <div class="tech-desc">NoSQL database hosted on Atlas cloud</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon silver-glow">🧠</div>
+          <div class="tech-name">Groq AI</div>
+          <div class="tech-desc">Llama 3.3 70B for intelligent plan generation</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon blue-glow">🔐</div>
+          <div class="tech-name">JWT Auth</div>
+          <div class="tech-desc">Secure token-based authentication system</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon red-glow">🌐</div>
+          <div class="tech-name">HTML/CSS/JS</div>
+          <div class="tech-desc">Pure frontend with no framework dependency</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon green-glow">🔒</div>
+          <div class="tech-name">Argon2</div>
+          <div class="tech-desc">Military-grade password hashing algorithm</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Overview -->
+  <section class="about-section">
+    <div class="about-container">
+      <div class="section-tag">// RACE SPECS</div>
+      <h2 class="about-section-title">WHAT IT CAN DO</h2>
+      <div class="features-list">
+        <div class="feature-list-item">
+          <div class="fli-num blue">01</div>
+          <div class="fli-content">
+            <div class="fli-title">AI AGILE PLAN GENERATOR</div>
+            <div class="fli-desc">Instantly generates full sprint plans, epics, user stories, task breakdowns and risk analysis using Groq AI.</div>
+          </div>
+          <div class="fli-endpoint">POST /project/create</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num green">02</div>
+          <div class="fli-content">
+            <div class="fli-title">AI RISK PREDICTOR</div>
+            <div class="fli-desc">Predicts project risk score based on overdue tasks, workload levels, sprint velocity and retrospective data.</div>
+          </div>
+          <div class="fli-endpoint">GET /risk-predictor/{id}</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num blue">03</div>
+          <div class="fli-content">
+            <div class="fli-title">WORKLOAD ANALYZER</div>
+            <div class="fli-desc">Distributes tasks evenly across team members and detects overloaded developers automatically.</div>
+          </div>
+          <div class="fli-endpoint">GET /workload/{id}</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num silver">04</div>
+          <div class="fli-content">
+            <div class="fli-title">SPRINT RETROSPECTIVE</div>
+            <div class="fli-desc">Auto-generates what went well, what went wrong and improvement suggestions for every sprint.</div>
+          </div>
+          <div class="fli-endpoint">GET /retrospective/{id}</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num green">05</div>
+          <div class="fli-content">
+            <div class="fli-title">SPRINT ANALYTICS</div>
+            <div class="fli-desc">Analyzes sprint efficiency, stories per sprint, average velocity and provides an efficiency indicator.</div>
+          </div>
+          <div class="fli-endpoint">GET /analytics/{id}</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num red">06</div>
+          <div class="fli-content">
+            <div class="fli-title">RISK EXTRACTOR</div>
+            <div class="fli-desc">Extracts high, medium and low risks from the AI plan with calculated risk scores and counts.</div>
+          </div>
+          <div class="fli-endpoint">GET /risk/{id}</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num blue">07</div>
+          <div class="fli-content">
+            <div class="fli-title">TASK TRACKER</div>
+            <div class="fli-desc">Extracts and monitors all project tasks with assigned roles, estimated effort and story mapping.</div>
+          </div>
+          <div class="fli-endpoint">GET /task/{id}</div>
+        </div>
+        <div class="feature-list-item">
+          <div class="fli-num silver">08</div>
+          <div class="fli-content">
+            <div class="fli-title">DASHBOARD METRICS</div>
+            <div class="fli-desc">Shows total stories, tasks, estimated hours, team workload and overall risk score at a glance.</div>
+          </div>
+          <div class="fli-endpoint">GET /dashboard/{id}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Built With Love -->
+  <section class="about-section alt-bg">
+    <div class="about-container">
+      <div class="section-tag">// THE PHILOSOPHY</div>
+      <h2 class="about-section-title">WHY MOTORSPORT DESIGN?</h2>
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="ph-icon">🏎️</div>
+          <h3>SPEED</h3>
+          <p>Just like a race car, this tool is built for speed. AI generates your entire project plan in seconds — no manual work needed.</p>
+        </div>
+        <div class="philosophy-card">
+          <div class="ph-icon">🎯</div>
+          <h3>PRECISION</h3>
+          <p>Every metric, risk score and workload analysis is calculated with precision — like a race engineer tuning for peak performance.</p>
+        </div>
+        <div class="philosophy-card">
+          <div class="ph-icon">🏁</div>
+          <h3>WINNING</h3>
+          <p>The goal is always to finish first. With AI-powered insights, your team stays ahead of risks, deadlines and sprint goals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">AI AGILE ASSISTANT</span>
+      </div>
+      <p class="footer-sub">Built with FastAPI · MongoDB · Groq AI · by Harsh Kumar</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="about.html">About</a>
+      </div>
+      <p class="footer-copy">© 2025 AI Agile Assistant by Harsh Kumar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

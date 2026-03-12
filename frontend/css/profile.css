@@ -1,0 +1,304 @@
+/* ── Profile Main ───────────────────────── */
+.profile-main {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  padding: 100px 5% 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ── Profile Hero ───────────────────────── */
+.profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 48px;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--electric-blue), var(--cyan), var(--electric-blue), transparent);
+  animation: stripeGlow 3s ease-in-out infinite;
+}
+
+/* Avatar */
+.profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.profile-avatar {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--electric-blue), #0040ff);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 900;
+  color: #000;
+  box-shadow: 0 0 30px rgba(0,149,255,0.4);
+  position: relative; z-index: 1;
+}
+
+.profile-avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,149,255,0.3);
+  animation: ringPulse 2s ease-in-out infinite;
+}
+
+@keyframes ringPulse {
+  0%,100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+.profile-status {
+  position: absolute;
+  bottom: 4px; right: 4px;
+  display: flex; align-items: center; gap: 4px;
+  padding: 3px 8px;
+  background: rgba(0,255,136,0.1);
+  border: 1px solid rgba(0,255,136,0.3);
+  border-radius: 100px;
+  font-family: var(--font-mono); font-size: 8px;
+  color: var(--green); letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* Profile Info */
+.profile-info { flex: 1; }
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 900; letter-spacing: 2px;
+  color: var(--text); margin-bottom: 6px;
+}
+
+.profile-email {
+  font-family: var(--font-mono);
+  font-size: 13px; color: var(--text-dim);
+  margin-bottom: 16px; letter-spacing: 1px;
+}
+
+.profile-badges {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.profile-badge {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.profile-badge.blue {
+  background: rgba(0,149,255,0.1);
+  border: 1px solid rgba(0,149,255,0.3);
+  color: var(--electric-blue);
+}
+
+.profile-badge.green {
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.3);
+  color: var(--green);
+}
+
+.profile-badge.silver {
+  background: rgba(192,192,192,0.08);
+  border: 1px solid rgba(192,192,192,0.3);
+  color: var(--silver);
+}
+
+/* ── Stats Row ──────────────────────────── */
+.profile-stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.profile-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 24px;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.profile-stat-card:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-3px);
+}
+
+.psc-value {
+  font-family: var(--font-display);
+  font-size: 40px; font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.psc-label {
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--text-dim); letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Profile Section ────────────────────── */
+.profile-section { margin-bottom: 40px; }
+
+.profile-section-title {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700;
+  letter-spacing: 2px; color: var(--text);
+  margin-bottom: 20px; margin-top: 8px;
+}
+
+/* ── Shortcuts Grid ─────────────────────── */
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.shortcut-card {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.shortcut-card:hover {
+  border-color: var(--border-bright);
+  transform: translateX(4px);
+  box-shadow: 0 0 20px rgba(0,149,255,0.06);
+}
+
+.sc-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+
+.sc-info { flex: 1; }
+
+.sc-title {
+  font-family: var(--font-display);
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; color: var(--text);
+  margin-bottom: 3px;
+}
+
+.sc-desc {
+  font-size: 12px; color: var(--text-dim);
+}
+
+.sc-arrow {
+  font-size: 18px; color: var(--electric-blue);
+  transition: transform 0.3s;
+}
+
+.shortcut-card:hover .sc-arrow { transform: translateX(4px); }
+
+/* ── Account Card ───────────────────────── */
+.account-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.account-row {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  transition: background 0.3s;
+}
+
+.account-row:hover { background: rgba(0,149,255,0.02); }
+
+.account-label {
+  font-family: var(--font-mono); font-size: 9px;
+  color: var(--text-dim); letter-spacing: 2px;
+  text-transform: uppercase; margin-bottom: 4px;
+}
+
+.account-value {
+  font-size: 14px; color: var(--text);
+  font-family: var(--font-body);
+}
+
+.account-tag {
+  padding: 3px 10px; border-radius: 100px;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.account-tag.green {
+  background: rgba(0,255,136,0.08);
+  border: 1px solid rgba(0,255,136,0.3);
+  color: var(--green);
+}
+
+.account-tag.blue {
+  background: rgba(0,149,255,0.08);
+  border: 1px solid rgba(0,149,255,0.3);
+  color: var(--electric-blue);
+}
+
+.account-tag.silver {
+  background: rgba(192,192,192,0.08);
+  border: 1px solid rgba(192,192,192,0.3);
+  color: var(--silver);
+}
+
+.account-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.04);
+  margin: 0 20px;
+}
+
+/* ── Logout ─────────────────────────────── */
+.profile-logout {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 40px;
+}
+
+.logout-btn {
+  padding: 14px 40px;
+  background: transparent;
+  border: 1px solid rgba(255,34,0,0.4);
+  color: var(--racing-red);
+  font-family: var(--font-display);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  border-radius: 6px; cursor: none;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: rgba(255,34,0,0.08);
+  box-shadow: 0 0 20px rgba(255,34,0,0.2);
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ─────────────────────────── */
+@media (max-width: 768px) {
+  .profile-hero { flex-direction: column; text-align: center; }
+  .profile-badges { justify-content: center; }
+  .profile-stats-row { grid-template-columns: repeat(2, 1fr); }
+  .shortcuts-grid { grid-template-columns: 1fr; }
+}

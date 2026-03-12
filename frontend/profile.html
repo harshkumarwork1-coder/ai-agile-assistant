@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile — AI Agile Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/profile.css"/>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Background -->
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="welcome.html" class="nav-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">AI AGILE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="welcome.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn-outline" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Profile Section -->
+  <main class="profile-main">
+
+    <!-- Profile Hero -->
+    <div class="profile-hero">
+      <div class="profile-avatar-wrap">
+        <div class="profile-avatar">
+          <span id="avatarInitial">?</span>
+        </div>
+        <div class="profile-avatar-ring"></div>
+        <div class="profile-status">
+          <span class="badge-dot"></span>
+          ACTIVE
+        </div>
+      </div>
+      <div class="profile-info">
+        <div class="section-tag">// DRIVER PROFILE</div>
+        <h1 class="profile-name" id="profileName">Loading...</h1>
+        <p class="profile-email" id="profileEmail">Loading...</p>
+        <div class="profile-badges">
+          <span class="profile-badge blue">⚡ AI Engineer</span>
+          <span class="profile-badge green">🏁 Agile Master</span>
+          <span class="profile-badge silver">🚀 Sprint Runner</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="profile-stats-row" id="profileStatsRow">
+      <div class="profile-stat-card">
+        <div class="psc-value blue" id="totalProjects">0</div>
+        <div class="psc-label">Total Projects</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="psc-value green" id="totalTasks">0</div>
+        <div class="psc-label">Total Tasks</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="psc-value silver" id="totalSprints">0</div>
+        <div class="psc-label">Total Sprints</div>
+      </div>
+      <div class="profile-stat-card">
+        <div class="psc-value red" id="totalRisks">0</div>
+        <div class="psc-label">Risks Tracked</div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="profile-section">
+      <div class="section-tag">// QUICK ACCESS</div>
+      <h2 class="profile-section-title">FEATURE SHORTCUTS</h2>
+      <div class="shortcuts-grid">
+        <a href="welcome.html" class="shortcut-card">
+          <div class="sc-icon blue-glow">🚀</div>
+          <div class="sc-info">
+            <div class="sc-title">MY PROJECTS</div>
+            <div class="sc-desc">View and manage all projects</div>
+          </div>
+          <span class="sc-arrow">→</span>
+        </a>
+        <a href="dashboard.html" class="shortcut-card">
+          <div class="sc-icon green-glow">📊</div>
+          <div class="sc-info">
+            <div class="sc-title">DASHBOARD</div>
+            <div class="sc-desc">View latest project dashboard</div>
+          </div>
+          <span class="sc-arrow">→</span>
+        </a>
+        <a href="about.html" class="shortcut-card">
+          <div class="sc-icon silver-glow">ℹ️</div>
+          <div class="sc-info">
+            <div class="sc-title">ABOUT</div>
+            <div class="sc-desc">Learn about AI Agile Assistant</div>
+          </div>
+          <span class="sc-arrow">→</span>
+        </a>
+        <a href="index.html" class="shortcut-card">
+          <div class="sc-icon red-glow">🏠</div>
+          <div class="sc-info">
+            <div class="sc-title">HOMEPAGE</div>
+            <div class="sc-desc">Back to the main page</div>
+          </div>
+          <span class="sc-arrow">→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Account Section -->
+    <div class="profile-section">
+      <div class="section-tag">// ACCOUNT</div>
+      <h2 class="profile-section-title">ACCOUNT SETTINGS</h2>
+      <div class="account-card">
+        <div class="account-row">
+          <div class="account-info">
+            <div class="account-label">EMAIL ADDRESS</div>
+            <div class="account-value" id="accountEmail">Loading...</div>
+          </div>
+          <span class="account-tag green">Verified</span>
+        </div>
+        <div class="account-divider"></div>
+        <div class="account-row">
+          <div class="account-info">
+            <div class="account-label">ACCOUNT STATUS</div>
+            <div class="account-value">Active</div>
+          </div>
+          <span class="account-tag blue">Active</span>
+        </div>
+        <div class="account-divider"></div>
+        <div class="account-row">
+          <div class="account-info">
+            <div class="account-label">AI PROVIDER</div>
+            <div class="account-value">Groq — Llama 3.3 70B</div>
+          </div>
+          <span class="account-tag silver">Connected</span>
+        </div>
+        <div class="account-divider"></div>
+        <div class="account-row">
+          <div class="account-info">
+            <div class="account-label">DATABASE</div>
+            <div class="account-value">MongoDB Atlas</div>
+          </div>
+          <span class="account-tag green">Connected</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <div class="profile-logout">
+      <button class="logout-btn" id="logoutBtnBottom">
+        🚪 LOGOUT FROM DASHBOARD
+      </button>
+    </div>
+
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+  window.addEventListener('load', async () => {
+
+    // Auth check
+    if (!isLoggedIn()) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    // ── Decode JWT token ───────────────────
+    function parseJWT(token) {
+      try {
+        const base64 = token.split('.')[1];
+        const decoded = atob(base64);
+        return JSON.parse(decoded);
+      } catch (e) {
+        return {};
+      }
+    }
+
+    const token = getToken();
+    const payload = parseJWT(token);
+    const email = payload.email || 'Unknown User';
+    const username = email.split('@')[0];
+    const initial = username.charAt(0).toUpperCase();
+
+    // Set profile info
+    document.getElementById('avatarInitial').textContent = initial;
+    document.getElementById('profileName').textContent = username.toUpperCase();
+    document.getElementById('profileEmail').textContent = email;
+    document.getElementById('accountEmail').textContent = email;
+
+    // ── Load project stats ─────────────────
+    try {
+      const data = await getAllProjects();
+      const projects = data.projects || [];
+
+      document.getElementById('totalProjects').textContent = projects.length;
+
+      let totalTasks = 0;
+      let totalSprints = 0;
+      let totalRisks = 0;
+
+      projects.forEach(p => {
+        const metrics = p.ai_plan?.dashboard_metrics || {};
+        const sprintPlan = p.ai_plan?.sprint_plan || [];
+        const riskAnalysis = p.ai_plan?.risk_analysis || [];
+        totalTasks += metrics.total_tasks || 0;
+        totalSprints += sprintPlan.length || 0;
+        totalRisks += riskAnalysis.length || 0;
+      });
+
+      document.getElementById('totalTasks').textContent = totalTasks;
+      document.getElementById('totalSprints').textContent = totalSprints;
+      document.getElementById('totalRisks').textContent = totalRisks;
+
+    } catch (err) {
+      console.error('Profile stats error:', err);
+    }
+
+    // ── Logout ─────────────────────────────
+    document.getElementById('logoutBtn').addEventListener('click', () => logout());
+    document.getElementById('logoutBtnBottom').addEventListener('click', () => logout());
+
+  });
+  </script>
+
+</body>
+</html>

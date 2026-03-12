@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome — AI Agile Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/welcome.css"/>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Background -->
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="welcome.html" class="nav-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">AI AGILE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="welcome.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn-outline" id="logoutBtn">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="welcome-main">
+
+    <!-- Header -->
+    <div class="welcome-header">
+      <div>
+        <div class="section-tag">// YOUR GARAGE</div>
+        <h1 class="welcome-title">MY <span class="gradient-text">PROJECTS</span></h1>
+        <p class="welcome-sub">Manage your Agile projects. Click a project to open its dashboard.</p>
+      </div>
+      <button class="btn-hero-primary" id="openCreateBtn">
+        <span>+ NEW PROJECT</span>
+      </button>
+    </div>
+
+    <!-- Create Project Modal -->
+    <div class="modal-overlay" id="modalOverlay" style="display:none">
+      <div class="modal-card">
+
+        <div class="modal-header">
+          <h2>CREATE NEW PROJECT</h2>
+          <button class="modal-close" id="closeModalBtn">✕</button>
+        </div>
+
+        <div class="msg success-msg" id="createSuccess" style="display:none">
+          ✅ Project created! AI plan generated.
+        </div>
+        <div class="msg error-msg" id="createError" style="display:none">
+          ❌ <span id="createErrorText">Something went wrong.</span>
+        </div>
+
+        <div class="auth-form">
+
+          <div class="form-group">
+            <label class="form-label">PROJECT TITLE</label>
+            <div class="input-wrap">
+              <span class="input-icon">🚀</span>
+              <input type="text" id="projectTitle" class="form-input" placeholder="e.g. E-Commerce Platform"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">DESCRIPTION</label>
+            <div class="input-wrap">
+              <span class="input-icon">📝</span>
+              <textarea id="projectDesc" class="form-input form-textarea" placeholder="Describe your project..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">DEADLINE</label>
+            <div class="input-wrap">
+              <span class="input-icon">📅</span>
+              <input type="date" id="projectDeadline" class="form-input"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">TEAM SIZE</label>
+            <div class="input-wrap">
+              <span class="input-icon">👥</span>
+              <input type="number" id="projectTeamSize" class="form-input" placeholder="e.g. 5" min="1" max="50"/>
+            </div>
+          </div>
+
+          <button class="auth-btn" id="createProjectBtn">
+            <span id="createBtnText">🧠 GENERATE AI PLAN</span>
+            <span id="createBtnLoader" style="display:none">⏳ AI IS GENERATING...</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Loaded dynamically -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-icon">🚀</div>
+      <h3>NO PROJECTS YET</h3>
+      <p>Create your first project and let AI generate your Agile plan.</p>
+      <button class="auth-btn" style="max-width:220px;margin-top:16px" id="emptyCreateBtn">
+        + CREATE PROJECT
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-state" id="loadingState">
+      <div class="spinner"></div>
+      <p>Loading your projects...</p>
+    </div>
+
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    window.addEventListener('load', async () => {
+
+      // Auth check
+      if (!isLoggedIn()) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Elements
+      const projectsGrid = document.getElementById('projectsGrid');
+      const emptyState = document.getElementById('emptyState');
+      const loadingState = document.getElementById('loadingState');
+      const modalOverlay = document.getElementById('modalOverlay');
+
+      // ── Load Projects ──────────────────────
+      async function loadProjects() {
+        loadingState.style.display = 'flex';
+        projectsGrid.style.display = 'none';
+        emptyState.style.display = 'none';
+
+        try {
+          const data = await getAllProjects();
+          const projects = data.projects || [];
+
+          loadingState.style.display = 'none';
+
+          if (projects.length === 0) {
+            emptyState.style.display = 'flex';
+            return;
+          }
+
+          projectsGrid.style.display = 'grid';
+          projectsGrid.innerHTML = '';
+
+          projects.forEach(project => {
+            const metrics = project.ai_plan?.dashboard_metrics || {};
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            card.innerHTML = `
+              <div class="project-card-header">
+                <div class="project-icon">🚀</div>
+                <div class="project-meta">
+                  <h3>${project.title || 'Untitled Project'}</h3>
+                  <span class="project-id">ID: ${project._id}</span>
+                </div>
+                <button class="delete-btn" data-id="${project._id}" title="Delete Project">🗑️</button>
+              </div>
+              <p class="project-desc">${project.description || 'No description provided.'}</p>
+              <div class="project-stats">
+                <div class="project-stat">
+                  <span class="ps-value">${metrics.total_tasks || 0}</span>
+                  <span class="ps-label">Tasks</span>
+                </div>
+                <div class="project-stat">
+                  <span class="ps-value">${metrics.total_stories || 0}</span>
+                  <span class="ps-label">Stories</span>
+                </div>
+                <div class="project-stat">
+                  <span class="ps-value">${project.team_size || 0}</span>
+                  <span class="ps-label">Team</span>
+                </div>
+                <div class="project-stat">
+                  <span class="ps-value risk-score">${metrics.risk_score || 0}</span>
+                  <span class="ps-label">Risk</span>
+                </div>
+              </div>
+              <div class="project-footer">
+                <span class="project-deadline">📅 ${project.deadline || 'No deadline'}</span>
+                <a href="dashboard.html?id=${project._id}" class="open-btn">OPEN DASHBOARD →</a>
+              </div>
+            `;
+            projectsGrid.appendChild(card);
+          });
+
+          // Delete buttons
+          document.querySelectorAll('.delete-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+              e.stopPropagation();
+              const id = btn.getAttribute('data-id');
+              if (confirm('Delete this project? This cannot be undone.')) {
+                await deleteProject(id);
+                loadProjects();
+              }
+            });
+          });
+
+        } catch (err) {
+          loadingState.style.display = 'none';
+          emptyState.style.display = 'flex';
+        }
+      }
+
+      loadProjects();
+
+      // ── Open/Close Modal ───────────────────
+      document.getElementById('openCreateBtn').addEventListener('click', () => {
+        modalOverlay.style.display = 'flex';
+      });
+      document.getElementById('closeModalBtn').addEventListener('click', () => {
+        modalOverlay.style.display = 'none';
+      });
+      document.getElementById('emptyCreateBtn')?.addEventListener('click', () => {
+        modalOverlay.style.display = 'flex';
+      });
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+      });
+
+      // ── Create Project ─────────────────────
+      document.getElementById('createProjectBtn').addEventListener('click', async () => {
+
+        const title = document.getElementById('projectTitle').value.trim();
+        const description = document.getElementById('projectDesc').value.trim();
+        const deadline = document.getElementById('projectDeadline').value;
+        const team_size = parseInt(document.getElementById('projectTeamSize').value);
+
+        const createSuccess = document.getElementById('createSuccess');
+        const createError = document.getElementById('createError');
+        const createErrorText = document.getElementById('createErrorText');
+        const createBtnText = document.getElementById('createBtnText');
+        const createBtnLoader = document.getElementById('createBtnLoader');
+        const createProjectBtn = document.getElementById('createProjectBtn');
+
+        createSuccess.style.display = 'none';
+        createError.style.display = 'none';
+
+        if (!title || !description || !deadline || !team_size) {
+          createErrorText.textContent = 'Please fill in all fields.';
+          createError.style.display = 'block';
+          return;
+        }
+
+        createBtnText.style.display = 'none';
+        createBtnLoader.style.display = 'inline';
+        createProjectBtn.disabled = true;
+
+        try {
+          const result = await createProject({ title, description, deadline, team_size });
+
+          if (result.project_id) {
+            createSuccess.style.display = 'block';
+            setTimeout(() => {
+              modalOverlay.style.display = 'none';
+              createSuccess.style.display = 'none';
+              loadProjects();
+            }, 2000);
+          } else {
+            createErrorText.textContent = result.detail || 'Failed to create project.';
+            createError.style.display = 'block';
+          }
+        } catch (err) {
+          createErrorText.textContent = 'Cannot connect to server.';
+          createError.style.display = 'block';
+        }
+
+        createBtnText.style.display = 'inline';
+        createBtnLoader.style.display = 'none';
+        createProjectBtn.disabled = false;
+      });
+
+      // ── Logout ─────────────────────────────
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        logout();
+      });
+
+    });
+  </script>
+
+</body>
+</html>

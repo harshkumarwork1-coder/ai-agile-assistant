@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Agile Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Background -->
+  <div class="grid-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">AI AGILE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#stats">Stats</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="login.html" class="btn-outline">Login</a>
+      <a href="register.html" class="btn-primary">Get Started</a>
+    </div>
+    <div class="hamburger" id="hamburger">☰</div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        AI POWERED · AGILE · INTELLIGENT
+      </div>
+
+      <h1 class="hero-title">
+        <span class="title-line-1">ENGINEER YOUR</span>
+        <span class="title-line-2">SPRINTS LIKE A</span>
+        <span class="title-line-3">RACE MACHINE</span>
+      </h1>
+
+      <p class="hero-desc">
+        Built for speed. Designed for precision. Your AI-powered Agile Assistant 
+        that plans sprints, predicts risks, analyzes workloads and generates 
+        retrospectives — all on autopilot.
+      </p>
+
+      <div class="hero-actions">
+        <a href="register.html" class="btn-hero-primary">
+          <span>LAUNCH DASHBOARD</span>
+          <span class="btn-arrow">→</span>
+        </a>
+        <a href="#features" class="btn-hero-outline">EXPLORE FEATURES</a>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">10+</span>
+          <span class="stat-label">AI Features</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">100%</span>
+          <span class="stat-label">Automated</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">∞</span>
+          <span class="stat-label">Sprints</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Dashboard Preview -->
+    <div class="hero-visual">
+      <div class="visual-glow"></div>
+      <div class="dashboard-preview">
+        <div class="preview-topbar">
+          <div class="preview-dots">
+            <span style="background:#ff5f57"></span>
+            <span style="background:#febc2e"></span>
+            <span style="background:#28c840"></span>
+          </div>
+          <span class="preview-title-bar">// LIVE DASHBOARD</span>
+        </div>
+        <div class="preview-body">
+          <div class="preview-label">SPRINT METRICS</div>
+          <div class="metric-row">
+            <div class="metric-box">
+              <div class="metric-num cyan">42.5</div>
+              <div class="metric-name">Risk Score</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num green">88%</div>
+              <div class="metric-name">Tasks Done</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-num blue">94pt</div>
+              <div class="metric-name">Velocity</div>
+            </div>
+          </div>
+          <div class="preview-label" style="margin-top:14px">WORKLOAD</div>
+          <div class="bar-row">
+            <span class="bar-name">Dev 1</span>
+            <div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--electric-blue)"></div></div>
+            <span class="bar-pct">85%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-name">Dev 2</span>
+            <div class="bar-track"><div class="bar-fill" style="width:60%;background:var(--silver)"></div></div>
+            <span class="bar-pct">60%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-name">Dev 3</span>
+            <div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--racing-red)"></div></div>
+            <span class="bar-pct">72%</span>
+          </div>
+          <div class="preview-label" style="margin-top:14px">RISK STATUS</div>
+          <div class="risk-pills">
+            <span class="pill red">3 High</span>
+            <span class="pill yellow">5 Medium</span>
+            <span class="pill green">2 Low</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Racing stripe decoration -->
+    <div class="racing-stripe"></div>
+  </section>
+
+  <!-- FEATURES SLIDE SECTION -->
+  <section class="features-slide" id="features">
+    <div class="section-tag">// WHAT WE OFFER</div>
+    <h2 class="section-title">FULL THROTTLE FEATURES</h2>
+    <p class="section-sub">Everything your Agile team needs — powered by Gemini AI</p>
+
+    <div class="features-track">
+      <div class="features-grid">
+
+        <div class="feature-card" data-delay="0">
+          <div class="feature-icon-wrap blue-glow">🧠</div>
+          <h3>AI Agile Plan Generator</h3>
+          <p>Auto-generate full sprint plans, epics, user stories and task breakdowns using Gemini AI in seconds.</p>
+          <div class="feature-tag">POST /ai/generate-sprint</div>
+        </div>
+
+        <div class="feature-card" data-delay="1">
+          <div class="feature-icon-wrap red-glow">⚠️</div>
+          <h3>Risk Predictor</h3>
+          <p>Predict project risk score based on overdue tasks, team workload, sprint velocity and retrospectives.</p>
+          <div class="feature-tag">GET /risk-predictor/{id}</div>
+        </div>
+
+        <div class="feature-card" data-delay="2">
+          <div class="feature-icon-wrap green-glow">📊</div>
+          <h3>Workload Analyzer</h3>
+          <p>Distribute tasks evenly across your team. Detect overloaded developers before it becomes a problem.</p>
+          <div class="feature-tag">GET /workload/{id}</div>
+        </div>
+
+        <div class="feature-card" data-delay="3">
+          <div class="feature-icon-wrap blue-glow">🔁</div>
+          <h3>Sprint Retrospective</h3>
+          <p>Auto-generate what went well, what went wrong, and improvement suggestions after every sprint.</p>
+          <div class="feature-tag">GET /retrospective/{id}</div>
+        </div>
+
+        <div class="feature-card" data-delay="4">
+          <div class="feature-icon-wrap silver-glow">📈</div>
+          <h3>Sprint Analytics</h3>
+          <p>Analyze sprint efficiency, stories per sprint, velocity trends and get an efficiency indicator.</p>
+          <div class="feature-tag">GET /analytics/{id}</div>
+        </div>
+
+        <div class="feature-card" data-delay="5">
+          <div class="feature-icon-wrap green-glow">✅</div>
+          <h3>Task Tracker</h3>
+          <p>Extract and monitor all project tasks with assigned roles, estimated effort and story mapping.</p>
+          <div class="feature-tag">GET /task/{id}</div>
+        </div>
+
+        <div class="feature-card" data-delay="6">
+          <div class="feature-icon-wrap red-glow">🛡️</div>
+          <h3>Risk Extractor</h3>
+          <p>Extract high, medium and low risks directly from the AI plan with a calculated risk score.</p>
+          <div class="feature-tag">GET /risk/{id}</div>
+        </div>
+
+        <div class="feature-card" data-delay="7">
+          <div class="feature-icon-wrap silver-glow">🚀</div>
+          <h3>Dashboard Metrics</h3>
+          <p>Get total stories, tasks, estimated hours, team workload and risk score all in one dashboard.</p>
+          <div class="feature-tag">GET /dashboard/{id}</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / HOW IT WORKS -->
+  <section class="how-it-works" id="about">
+    <div class="section-tag">// HOW IT WORKS</div>
+    <h2 class="section-title">FROM ZERO TO SPRINT IN 3 STEPS</h2>
+
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">📝</div>
+        <h3>Create Project</h3>
+        <p>Enter your project title, description, deadline and team size. Our AI handles the rest.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🤖</div>
+        <h3>AI Generates Plan</h3>
+        <p>Gemini AI instantly creates your full Agile plan — epics, stories, tasks, sprints and risk analysis.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">📊</div>
+        <h3>Monitor & Analyze</h3>
+        <p>Track tasks, predict risks, analyze workload and generate retrospectives from your live dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section" id="stats">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-big cyan">10+</div>
+        <div class="stat-desc">Backend AI Features</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-big blue">100%</div>
+        <div class="stat-desc">AI Automated Planning</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-big silver">∞</div>
+        <div class="stat-desc">Projects Supported</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-big red">0</div>
+        <div class="stat-desc">Manual Sprint Setup</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">AI AGILE ASSISTANT</span>
+      </div>
+      <p class="footer-sub">Built with FastAPI · MongoDB · Gemini AI</p>
+      <div class="footer-links">
+        <a href="register.html">Register</a>
+        <a href="login.html">Login</a>
+        <a href="#features">Features</a>
+      </div>
+      <p class="footer-copy">© 2025 AI Agile Assistant by Harsh Kumar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

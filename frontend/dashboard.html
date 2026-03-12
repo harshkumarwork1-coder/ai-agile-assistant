@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — AI Agile Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Background -->
+  <div class="grid-bg"></div>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">⚡</div>
+      <span class="logo-text">AI AGILE</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-section="overview">
+        <span class="nav-icon">◈</span>
+        <span class="nav-label">Overview</span>
+      </button>
+      <button class="nav-item" data-section="tasks">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label">Tasks</span>
+      </button>
+      <button class="nav-item" data-section="risk">
+        <span class="nav-icon">◆</span>
+        <span class="nav-label">Risk Analysis</span>
+      </button>
+      <button class="nav-item" data-section="workload">
+        <span class="nav-icon">◎</span>
+        <span class="nav-label">Workload</span>
+      </button>
+      <button class="nav-item" data-section="retrospective">
+        <span class="nav-icon">↺</span>
+        <span class="nav-label">Retrospective</span>
+      </button>
+      <button class="nav-item" data-section="analytics">
+        <span class="nav-icon">↗</span>
+        <span class="nav-label">Analytics</span>
+      </button>
+      <button class="nav-item" data-section="predictor">
+        <span class="nav-icon">⬡</span>
+        <span class="nav-label">Risk Predictor</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="welcome.html" class="sidebar-back">← All Projects</a>
+      <button class="sidebar-logout" id="logoutBtn">Logout</button>
+    </div>
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="dash-main">
+
+    <!-- Top Bar -->
+    <header class="dash-topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <div>
+          <div class="section-tag" id="currentSectionTag">// OVERVIEW</div>
+          <h1 class="topbar-title" id="projectTitle">Loading...</h1>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="topbar-badge">
+          <span class="badge-dot"></span>
+          LIVE
+        </div>
+        <a href="profile.html" class="topbar-profile">👤</a>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <div class="dash-content">
+
+      <!-- Loading -->
+      <div class="loading-state" id="loadingState">
+        <div class="spinner"></div>
+        <p>Loading dashboard data...</p>
+      </div>
+
+      <!-- ── SECTION: OVERVIEW ── -->
+      <section class="dash-section active" id="section-overview">
+        <div class="metrics-grid" id="metricsGrid"></div>
+        <div class="overview-bottom">
+          <div class="overview-card" id="teamWorkloadCard"></div>
+          <div class="overview-card" id="riskScoreCard"></div>
+        </div>
+      </section>
+
+      <!-- ── SECTION: TASKS ── -->
+      <section class="dash-section" id="section-tasks">
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">// TASK TRACKER</div>
+            <h2 class="section-heading">ALL PROJECT TASKS</h2>
+          </div>
+          <div class="task-count-badge" id="taskCountBadge">0 Tasks</div>
+        </div>
+        <div class="table-wrap">
+          <table class="data-table" id="tasksTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>STORY</th>
+                <th>TASK NAME</th>
+                <th>ASSIGNED ROLE</th>
+                <th>EFFORT</th>
+                <th>UNIT</th>
+              </tr>
+            </thead>
+            <tbody id="tasksBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── SECTION: RISK ── -->
+      <section class="dash-section" id="section-risk">
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">// RISK ANALYSIS</div>
+            <h2 class="section-heading">PROJECT RISKS</h2>
+          </div>
+        </div>
+        <div class="risk-overview-grid" id="riskOverviewGrid"></div>
+        <div class="risk-list" id="riskList"></div>
+      </section>
+
+      <!-- ── SECTION: WORKLOAD ── -->
+      <section class="dash-section" id="section-workload">
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">// WORKLOAD ANALYZER</div>
+            <h2 class="section-heading">TEAM DISTRIBUTION</h2>
+          </div>
+        </div>
+        <div class="workload-grid" id="workloadGrid"></div>
+      </section>
+
+      <!-- ── SECTION: RETROSPECTIVE ── -->
+      <section class="dash-section" id="section-retrospective">
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">// SPRINT RETROSPECTIVE</div>
+            <h2 class="section-heading">WHAT WE LEARNED</h2>
+          </div>
+        </div>
+        <div class="retro-grid" id="retroGrid"></div>
+      </section>
+
+      <!-- ── SECTION: ANALYTICS ── -->
+      <section class="dash-section" id="section-analytics">
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">// SPRINT ANALYTICS</div>
+            <h2 class="section-heading">PERFORMANCE DATA</h2>
+          </div>
+        </div>
+        <div class="analytics-grid" id="analyticsGrid"></div>
+        <div class="sprint-bars" id="sprintBars"></div>
+      </section>
+
+      <!-- ── SECTION: RISK PREDICTOR ── -->
+      <section class="dash-section" id="section-predictor">
+        <div class="section-header-row">
+          <div>
+            <div class="section-tag">// AI RISK PREDICTOR</div>
+            <h2 class="section-heading">RISK PREDICTION</h2>
+          </div>
+        </div>
+        <div class="predictor-grid" id="predictorGrid"></div>
+        <div class="mitigation-list" id="mitigationList"></div>
+      </section>
+
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+  window.addEventListener('load', async () => {
+
+    // ── Auth check ─────────────────────────
+    if (!isLoggedIn()) {
+      window.location.href = 'login.html';
+      return;
+    }
+
+    // ── Get project ID from URL ─────────────
+    const params = new URLSearchParams(window.location.search);
+    const projectId = params.get('id');
+    if (!projectId) {
+      window.location.href = 'welcome.html';
+      return;
+    }
+
+    const loadingState = document.getElementById('loadingState');
+
+    // ── Sidebar Navigation ──────────────────
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.dash-section');
+    const sectionTags = {
+      overview: '// OVERVIEW',
+      tasks: '// TASK TRACKER',
+      risk: '// RISK ANALYSIS',
+      workload: '// WORKLOAD ANALYZER',
+      retrospective: '// SPRINT RETROSPECTIVE',
+      analytics: '// SPRINT ANALYTICS',
+      predictor: '// AI RISK PREDICTOR'
+    };
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        sections.forEach(s => s.classList.remove('active'));
+        item.classList.add('active');
+        const section = item.getAttribute('data-section');
+        document.getElementById(`section-${section}`).classList.add('active');
+        document.getElementById('currentSectionTag').textContent = sectionTags[section];
+      });
+    });
+
+    // ── Sidebar toggle ──────────────────────
+    document.getElementById('sidebarToggle').addEventListener('click', () => {
+      document.getElementById('sidebar').classList.toggle('collapsed');
+    });
+
+    // ── Logout ──────────────────────────────
+    document.getElementById('logoutBtn').addEventListener('click', () => logout());
+
+    // ── Load all data ───────────────────────
+    try {
+      loadingState.style.display = 'flex';
+
+      const [dashboard, tasks, risk, workload, retro, analytics, predictor] = await Promise.all([
+        getDashboard(projectId),
+        getTasks(projectId),
+        getRisk(projectId),
+        getWorkload(projectId),
+        getRetrospective(projectId),
+        getAnalytics(projectId),
+        getRiskPredictor(projectId)
+      ]);
+
+      loadingState.style.display = 'none';
+
+      // ── Overview ───────────────────────────
+      const metrics = dashboard.dashboard_metrics || {};
+      document.getElementById('projectTitle').textContent = dashboard.project_title || 'Project Dashboard';
+
+      document.getElementById('metricsGrid').innerHTML = `
+        <div class="metric-card">
+          <div class="mc-icon blue-glow">📋</div>
+          <div class="mc-value blue">${metrics.total_stories || 0}</div>
+          <div class="mc-label">Total Stories</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon green-glow">✅</div>
+          <div class="mc-value green">${metrics.total_tasks || 0}</div>
+          <div class="mc-label">Total Tasks</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon silver-glow">⏱️</div>
+          <div class="mc-value silver">${metrics.estimated_total_hours || 0}h</div>
+          <div class="mc-label">Est. Hours</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon red-glow">⚠️</div>
+          <div class="mc-value red">${metrics.risk_score || 0}</div>
+          <div class="mc-label">Risk Score</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon blue-glow">📊</div>
+          <div class="mc-value blue">${metrics.average_task_time_hours || 0}h</div>
+          <div class="mc-label">Avg Task Time</div>
+        </div>
+        <div class="metric-card">
+          <div class="mc-icon green-glow">👥</div>
+          <div class="mc-value green">${(metrics.team_workload || []).length}</div>
+          <div class="mc-label">Team Roles</div>
+        </div>
+      `;
+
+      // Team workload bars
+      const teamWorkload = metrics.team_workload || [];
+      const maxHours = Math.max(...teamWorkload.map(t => t.estimated_hours), 1);
+      document.getElementById('teamWorkloadCard').innerHTML = `
+        <div class="oc-title">TEAM WORKLOAD</div>
+        ${teamWorkload.map(t => `
+          <div class="workload-bar-row">
+            <span class="wb-name">${t.role}</span>
+            <div class="wb-track">
+              <div class="wb-fill" style="width:${(t.estimated_hours/maxHours)*100}%"></div>
+            </div>
+            <span class="wb-val">${t.estimated_hours}h</span>
+          </div>
+        `).join('')}
+      `;
+
+      // Risk score gauge
+      const riskScore = metrics.risk_score || 0;
+      const riskColor = riskScore > 7 ? 'var(--racing-red)' : riskScore > 4 ? '#ffc800' : 'var(--green)';
+      document.getElementById('riskScoreCard').innerHTML = `
+        <div class="oc-title">OVERALL RISK SCORE</div>
+        <div class="risk-gauge">
+          <div class="gauge-value" style="color:${riskColor}">${riskScore}</div>
+          <div class="gauge-label">${riskScore > 7 ? 'HIGH RISK' : riskScore > 4 ? 'MEDIUM RISK' : 'LOW RISK'}</div>
+          <div class="gauge-bar-track">
+            <div class="gauge-bar-fill" style="width:${Math.min(riskScore*10,100)}%;background:${riskColor}"></div>
+          </div>
+        </div>
+      `;
+
+      // ── Tasks ───────────────────────────────
+      const taskList = tasks.tasks || [];
+      document.getElementById('taskCountBadge').textContent = `${taskList.length} Tasks`;
+      document.getElementById('tasksBody').innerHTML = taskList.map((t, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td><span class="story-tag">${t.story || '-'}</span></td>
+          <td>${t.task_name || '-'}</td>
+          <td><span class="role-tag">${t.assigned_role || '-'}</span></td>
+          <td>${t.estimated_effort || '-'}</td>
+          <td><span class="unit-tag">${t.unit || '-'}</span></td>
+        </tr>
+      `).join('');
+
+      // ── Risk Analysis ───────────────────────
+      document.getElementById('riskOverviewGrid').innerHTML = `
+        <div class="risk-stat-card red-border">
+          <div class="rs-value red">${risk.high_risk_count || 0}</div>
+          <div class="rs-label">HIGH RISKS</div>
+        </div>
+        <div class="risk-stat-card yellow-border">
+          <div class="rs-value yellow">${risk.medium_risk_count || 0}</div>
+          <div class="rs-label">MEDIUM RISKS</div>
+        </div>
+        <div class="risk-stat-card green-border">
+          <div class="rs-value green">${risk.low_risk_count || 0}</div>
+          <div class="rs-label">LOW RISKS</div>
+        </div>
+        <div class="risk-stat-card blue-border">
+          <div class="rs-value blue">${risk.total_risks || 0}</div>
+          <div class="rs-label">TOTAL RISKS</div>
+        </div>
+      `;
+
+      // ── Workload ────────────────────────────
+      const workloadDist = workload.workload_distribution || {};
+      document.getElementById('workloadGrid').innerHTML = Object.entries(workloadDist).map(([member, tasksList]) => `
+        <div class="workload-member-card">
+          <div class="wm-header">
+            <div class="wm-avatar">👤</div>
+            <div>
+              <div class="wm-name">${member}</div>
+              <div class="wm-count">${tasksList.length} tasks assigned</div>
+            </div>
+          </div>
+          <div class="wm-tasks">
+            ${tasksList.map(t => `<span class="wm-task-tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+
+      // ── Retrospective ───────────────────────
+      const retData = retro.sprint_retrospective || {};
+      document.getElementById('retroGrid').innerHTML = `
+        <div class="retro-card green-border">
+          <div class="retro-header green">✅ WENT WELL</div>
+          <ul class="retro-list">
+            ${(retData.went_well || []).map(i => `<li>${i}</li>`).join('') || '<li>No data</li>'}
+          </ul>
+        </div>
+        <div class="retro-card red-border">
+          <div class="retro-header red">⚠️ WENT WRONG</div>
+          <ul class="retro-list">
+            ${(retData.went_wrong || []).map(i => `<li>${i}</li>`).join('') || '<li>No issues found</li>'}
+          </ul>
+        </div>
+        <div class="retro-card blue-border">
+          <div class="retro-header blue">🚀 IMPROVEMENTS</div>
+          <ul class="retro-list">
+            ${(retData.improvements || []).map(i => `<li>${i}</li>`).join('') || '<li>No data</li>'}
+          </ul>
+        </div>
+      `;
+
+      // ── Analytics ───────────────────────────
+      const analyticsData = analytics.sprint_analytics || {};
+      const efficiency = analyticsData.efficiency_indicator || 'N/A';
+      const effColor = efficiency.includes('Overloaded') ? 'var(--racing-red)' :
+                       efficiency.includes('Low') ? '#ffc800' : 'var(--green)';
+
+      document.getElementById('analyticsGrid').innerHTML = `
+  <div class="analytics-card">
+    <div class="ac-value blue">${analyticsData.total_sprints || 0}</div>
+    <div class="ac-label">TOTAL SPRINTS</div>
+  </div>
+  <div class="analytics-card">
+    <div class="ac-value green">${parseFloat(analyticsData.average_stories_per_sprint || 0).toFixed(1)}</div>
+    <div class="ac-label">AVG STORIES/SPRINT</div>
+  </div>
+  <div class="analytics-card" style="grid-column: span 2;">
+    <div class="ac-value" style="color:${effColor};font-size:16px;letter-spacing:1px">${efficiency}</div>
+    <div class="ac-label">EFFICIENCY INDICATOR</div>
+  </div>
+`;
+
+      // Sprint bars
+      const sprintData = analyticsData.stories_per_sprint || [];
+      const maxStories = Math.max(...sprintData.map(s => s.stories), 1);
+      document.getElementById('sprintBars').innerHTML = `
+        <div class="sprint-bars-title">STORIES PER SPRINT</div>
+        <div class="sprint-bars-grid">
+          ${sprintData.map(s => `
+            <div class="sprint-bar-col">
+              <div class="sprint-bar-wrap">
+                <div class="sprint-bar-fill" style="height:${(s.stories/maxStories)*100}%"></div>
+              </div>
+              <div class="sprint-bar-label">Sprint ${s.sprint}</div>
+              <div class="sprint-bar-val">${s.stories}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      // ── Risk Predictor ──────────────────────
+      const predData = predictor.risk_predictor || {};
+      const predScore = predData.risk_score || 0;
+      const predCategory = predData.risk_category || 'N/A';
+      const predColor = predCategory === 'High' ? 'var(--racing-red)' :
+                        predCategory === 'Medium' ? '#ffc800' : 'var(--green)';
+
+      document.getElementById('predictorGrid').innerHTML = `
+        <div class="predictor-score-card">
+          <div class="pred-label">RISK SCORE</div>
+          <div class="pred-score" style="color:${predColor}">${predScore}</div>
+          <div class="pred-category" style="color:${predColor}">${predCategory} RISK</div>
+          <div class="pred-bar-track">
+            <div class="pred-bar-fill" style="width:${predScore}%;background:${predColor}"></div>
+          </div>
+        </div>
+        <div class="predictor-info-card">
+          <div class="pred-label">SUMMARY</div>
+          <p class="pred-summary">${predData.summary || 'No summary available.'}</p>
+          <div class="pred-affected">
+            <div class="pred-label" style="margin-top:12px">AFFECTED TASKS</div>
+            <div class="pred-pct" style="color:${predColor}">${predData.affected_tasks_percentage || 0}%</div>
+          </div>
+        </div>
+      `;
+
+      // Mitigation actions
+      const actions = predData.suggested_mitigation_actions || [];
+      document.getElementById('mitigationList').innerHTML = `
+        <div class="mitigation-title">🛡️ MITIGATION ACTIONS</div>
+        ${actions.map((a, i) => `
+          <div class="mitigation-item">
+            <span class="mit-num">0${i+1}</span>
+            <span>${a}</span>
+          </div>
+        `).join('')}
+      `;
+
+    } catch (err) {
+      loadingState.style.display = 'none';
+      console.error('Dashboard error:', err);
+    }
+
+  });
+  </script>
+
+</body>
+</html>
